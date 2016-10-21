@@ -13,6 +13,11 @@ res.render('index');
 });
 
 
+app.get('/game-test', function(req,res){
+    res.send('This is where the game test would go.');
+});
+
+
 //The way to deploy javascript on to express applications.
 app.use(express.static(path.join(__dirname, 'views')));
 
