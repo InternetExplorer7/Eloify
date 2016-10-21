@@ -56,7 +56,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _CustomForm = __webpack_require__(179);
+	var _CustomForm = __webpack_require__(172);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21473,14 +21473,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
