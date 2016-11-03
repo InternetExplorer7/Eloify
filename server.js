@@ -5,12 +5,13 @@ var names = require('./data.js');
 var bodyParser = require('body-parser');
 var React = require('react');
 
+var userRoutes = require('./server/user-routes');
 
 
 var myCountry;
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use('/user', userRoutes);
 
 app.set('view engine', 'ejs');
 
@@ -21,7 +22,7 @@ app.get('/', function(req,res){
 });
 
 app.get('/game', function(req,res){
-  res.send('This is the game');
+  res.send('This is the game pag');
 });
 
 //The way to deploy javascript on to express applications.
