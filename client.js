@@ -1,69 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MyInput, valueInputed, myNotes} from './components/CustomForm.jsx';
-
-// var Hello = React.createClass({
-//   render : function(){
-//     return(
-//       <div>
-//         Hello REACT!!!
-//       </div>
-//     );
-//   }
-// });
-var testArray = ['Hello', 'Bye', 'Eat A Dick'];
-
-class Hello extends React.Component{
-
-constructor(props){
-  super(props);
-
-  this.state = {
-    people : 'Hello',
-  };
-
-};
+import App from './components/App.jsx';
+//import Routes from './components/Routes/routes.jsx';
+import { Router, Route, Link, browserHistory, Redirect } from 'react-router';
 
 
-
-render(){
-    return(
-      <div>
-        <h3>How are you {this.state.people}?</h3>
-
-{/*The main input that we will use.*/}
-        <MyInput/>
-
-
-
+class ShoppingList extends React.Component {
+  render() {
+    return (
+      <div className="shopping-list">
+        <h1>Shopping List for {this.props.name}</h1>
+        <ul>
+          <li>Instagram</li>
+          <li>WhatsApp</li>
+          <li>Oculus</li>
+        </ul>
       </div>
-    )
-  }
-};
-
-class Hi extends React.Component{
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name : 'Martha'
-
-      };
-  }
-
-  render(){
-    return(
-      <div>
-
-        <h1>
-          Hey ES6 WHATTUP {this.state.name}!!!
-          {this.state.propshit}
-        </h1>
-
-      </div>
-    )
+    );
   }
 }
 
-ReactDOM.render(<Hello name="Farhan"/>,document.getElementById('app'));
+
+ReactDOM.render(<ShoppingList/>,document.getElementById('app'));
+
+
+
+
+
+//Example Given Via Website.
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { browserHistory } from 'react-router';
+//
+// import Routes from './routes';
+//
+// import './index.css';
+//
+// ReactDOM.render(
+//   <Routes history={browserHistory} />,
+//   document.getElementById('root')
+// );
