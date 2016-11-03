@@ -25,7 +25,7 @@ app.use('/game', gameRoutes);
 app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
-  res.send('This is where the home page will go');
+  res.render('home');
 });
 
 app.get(['/mapgame', '/react-login', '/react-register'], function(req,res){
