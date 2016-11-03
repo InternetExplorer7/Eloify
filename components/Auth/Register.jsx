@@ -1,21 +1,14 @@
-import React, { Component } from 'react';
+var React = require('react');
 
-class RegisterForm extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      test : 'test'
-    }
+var RegisterForm = React.createClass({
+  render : function(){
+    return(
+      <h1>
+        Register AREA
+      </h1>
+    )
   }
-
-render(){
-  return(
-    <h1>Where we will Register</h1>
-  )
-}
-
-
-};
+});
 
 
 module.exports = RegisterForm;

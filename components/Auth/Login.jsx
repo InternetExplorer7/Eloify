@@ -1,21 +1,14 @@
-import React, { Component } from 'react';
+var React = require('react');
 
-class LoginForm extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      test : 'test'
-    }
+var LoginForm = React.createClass({
+  render : function(){
+    return(
+      <h1>
+        Login AREA
+      </h1>
+    )
   }
-
-render(){
-  return(
-    <h1>Where we will login</h1>
-  )
-}
-
-
-};
+});
 
 
 module.exports = LoginForm;

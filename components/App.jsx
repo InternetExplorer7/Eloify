@@ -1,4 +1,6 @@
-import React,{ Component } from 'react';
+//import React,{ Component } from 'react';
+
+var React = require('react');
 
 //This is where the full app will get put together, and then be exported to client.js.
 
@@ -20,20 +22,34 @@ import React,{ Component } from 'react';
 //
 // };
 
-class ShoppingList extends React.Component {
-  render() {
-    return (
-      <div className="shopping-list">
-        <h1>Shopping List for {this.props.name}</h1>
-        <ul>
-          <li>Instagram</li>
-          <li>WhatsApp</li>
-          <li>Oculus</li>
-        </ul>
-      </div>
-    );
-  }
-}
+// class ShoppingList extends React.Component {
+//   render() {
+//     return (
+//       <div className="shopping-list">
+//         <h1>Shopping List for {this.props.name}</h1>
+//         <ul>
+//           <li>Instagram</li>
+//           <li>WhatsApp</li>
+//           <li>Oculus</li>
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
 
+var ShoppingList = React.createClass({
+  render : function(){
+        return (
+          <div className="shopping-list">
+            <h1>Shopping List for {this.props.name}</h1>
+            <ul>
+              <li>Instagram</li>
+              <li>WhatsApp</li>
+              <li>Oculus</li>
+            </ul>
+          </div>
+        );
+  }
+});
 
 module.exports = ShoppingList;
