@@ -5,10 +5,10 @@ var names = require('./data.js');
 var bodyParser = require('body-parser');
 var React = require('react');
 
+//All of the routes needed server side.
 var userRoutes = require('./server/user-routes');
 var gameRoutes = require('./server/game-routes');
 
-var myCountry;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -18,18 +18,11 @@ app.use('/user', userRoutes);
 //All the routes needed for the game.
 app.use('/game', gameRoutes);
 
-
 app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
 
   res.render('index');
-
-});
-
-app.get('/game', function(req,res){
-
-  res.send('This is the game pag');
 
 });
 
