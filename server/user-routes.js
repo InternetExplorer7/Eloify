@@ -6,11 +6,15 @@ var Router = express.Router();
 // // // // // // // // // // // // // // // // // //
 
 Router.get('/login', function(req,res){
+
   res.send('This is the login page.');
+
 });
 
 Router.get('/register', function(req,res){
+
   res.send('This is the regsitering page.');
+
 });
 
 
