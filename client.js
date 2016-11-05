@@ -22,9 +22,10 @@ class ShoppingList extends React.Component {
 }
 
 
+//You can add components here, to update the routes.
+//addRoute(ShoppingList);
+
 ReactDOM.render(routes,document);
-
-
 
 
 

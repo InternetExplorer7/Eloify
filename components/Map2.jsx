@@ -1,5 +1,7 @@
 var React = require('react');
 var WorldMap = require('../client/react-world-map');
+var IconButton = require('material-ui/IconButton');
+var ActionHome = require('material-ui/svg-icons/action/home');
 
 var clickedArea;
 
@@ -35,10 +37,10 @@ var CustomMap2 = React.createClass({
 
       <html>
         <head>
-          <title>Elofiy</title>
+          <title>Eloify</title>
         </head>
         <body>
-
+      
             <h1> Simple Map - Double Click To Get Continent. </h1>
               <h2>Location : {this.state.areaLocation}</h2>
           <div onClick={this.listeningHere}>

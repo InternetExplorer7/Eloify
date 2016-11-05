@@ -5,16 +5,38 @@ var Router = express.Router();
 
 // // // // // // // // // // // // // // // // // //
 
+//login page.
 Router.get('/login', function(req,res){
-
-  res.send('This is the login page.');
-
+  res.render('auth/login');
 });
 
+// When login is posted.
+Router.post('/login', function(req,res){
+
+  var loginUsername = req.body.username;
+  var loginPassword = req.body.password;
+
+  console.log(loginUsername);
+  console.log(loginPassword);
+
+  res.send('Username added in server');
+});
+
+//register page
 Router.get('/register', function(req,res){
+  res.render('auth/register');
+});
 
-  res.send('This is the regsitering page.');
+// When register is posted.
+Router.post('/register', function(req,res){
 
+  var postUsername = req.body.username;
+  var postPassword = req.body.password;
+
+  console.log(postUsername);
+  console.log(postPassword);
+
+  res.send('Register info in server');
 });
 
 

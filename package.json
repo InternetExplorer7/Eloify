@@ -15,6 +15,7 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "iso": "^5.2.0",
+    "material-ui": "^0.16.1",
     "random-name": "^0.1.2",
     "react": "^15.3.2",
     "react-d3-map": "^0.8.3",

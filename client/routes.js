@@ -14,6 +14,9 @@ var CustomMap2 = require('../components/Map2.jsx');
 
 var IsoTest = require('../components/Test.jsx');
 
+
+
+
 var AnotherPage = React.createClass({
 
   render: function() {
@@ -25,9 +28,24 @@ var AnotherPage = React.createClass({
 });
 
 
-var routes = (
+// var CustomButton = React.createClass({
+//   render : function(){
+//     return(
+//       <FlatButton label="Test"/>
+//     )
+//   }
+// });
 
-  <Router history={browserHistory}>
+
+//A function I made to bring in Routes.
+function addRoute(route){
+  console.log(route);
+}
+
+
+//Removed the <Router> key. Remember to add that shit later.
+var routes = (
+<Router history={browserHistory}>
 
       <Route path="/mapgame" component={CustomMap2}/>
 
@@ -36,10 +54,12 @@ var routes = (
       <Route path="/react-register" component={RegisterForm}/>
 
       <Route path="/mapgame2" component={CustomMap1}/>
-  </Router>
 
+</Router>
 )
 
+
+
 module.exports = {
-  routes: routes
+  routes : routes
 }

@@ -5,6 +5,8 @@ var names = require('./data.js');
 var bodyParser = require('body-parser');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
+
+
 //All of the routes needed server side.
 var userRoutes = require('./server/user-routes');
 var gameRoutes = require('./server/game-routes');
@@ -24,10 +26,14 @@ app.use('/game', gameRoutes);
 
 app.set('view engine', 'ejs');
 
+//The landing page.
 app.get('/', function(req,res){
+
   res.render('home');
+
 });
 
+//The pages rendered with React.js
 app.get(['/mapgame', '/react-login', '/react-register', '/mapgame2'], function(req,res){
 
 var ReactRouter = require('react-router');
