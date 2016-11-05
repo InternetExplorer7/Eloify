@@ -16,6 +16,7 @@ require('babel-register')({
   presets: [ 'react' ]
 });
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //All the routes needed for user auth.

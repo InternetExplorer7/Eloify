@@ -5,71 +5,122 @@ var Router = express.Router();
 
 // // // // // // // // // // // // // // // // // //
 
+
+
+
+// // // // // // // // // // // // // // // // // //
+var mongoose = require('mongoose');
+var passport = require('passport');
+var passportLocal = require('passport-local');
+var passportLocalMongoose = require('passport-local-mongoose');
+var bodyParser = require('body-parser');
+
+
+var User = require('./models/users-db.js');
+
+//======================================
+// --- Middleware so we can use sessions.
+Router.use(require('express-session')({
+    secret : 'This can be anything',
+    resave : false,
+    saveUninitialized : false
+}));
+//======================================
+
+    passport.serializeUser(User.serializeUser());
+    passport.deserializeUser(User.deserializeUser());
+    passport.use(new passportLocal(User.authenticate()));
+//======================================
+// --- Middleware so we can use passport
+Router.use(passport.initialize());
+Router.use(passport.session());
+//======================================
+
+
 //login page.
 Router.get('/login', function(req,res){
-  res.render('auth/login');
+
+    //If user is logged in, log them out.
+      if (!(req.user === 'undefined')){
+        req.logout();
+    };
+
+    res.render('auth/login');
 });
 
 // When login is posted.
-Router.post('/login', function(req,res){
+Router.post('/login', passport.authenticate('local', {
+    successRedirect : '/user/me',
+    failureRedirect : '/user/login'
+}), function(req,res){
 
-  var loginUsername = req.body.username;
-  var loginPassword = req.body.password;
+  //You really don't do much over here.
 
-  console.log(loginUsername);
-  console.log(loginPassword);
-
-  res.send('Username added in server');
 });
 
 //register page
 Router.get('/register', function(req,res){
+
+  //If user is logged in, log them out.
+    if (!(req.user === 'undefined')){
+      req.logout();
+    };
+
   res.render('auth/register');
 });
 
 // When register is posted.
 Router.post('/register', function(req,res){
 
+
+//Get the username and password from the forms.
   var postUsername = req.body.username;
   var postPassword = req.body.password;
 
-  console.log(postUsername);
-  console.log(postPassword);
 
-  res.send('Register info in server');
+    User.register(new User({username : postUsername}),postPassword, function(err,body){
+        if(err){
+            console.log(err);
+        }else{
+            passport.authenticate('local')(req,res,function(){
+                res.redirect('/user/me');
+            });
+        }
+    });
 });
 
 
-// // // // // // // // // // // // // // // // // //
-// var mongoose = require('mongoose');
-// var passport = require('passport');
-// var passportLocal = require('passport-local');
-// var passportLocalMongoose = require('passport-local-mongoose');
-// var bodyParser = require('body-parser');
-//
-//
-// var User = require('./db.js');
-//
-// //======================================
-// // --- Middleware so we can use sessions.
-// Router.use(require('express-session')({
-//     secret : 'This can be anything',
-//     resave : false,
-//     saveUninitialized : false
-// }));
-// //======================================
-//
-//     passport.serializeUser(User.serializeUser());
-//     passport.deserializeUser(User.deserializeUser());
-//     passport.use(new passportLocal(User.authenticate()));
-// //======================================
-// // --- Middleware so we can use passport
-// Router.use(passport.initialize());
-// Router.use(passport.session());
-// //======================================
+Router.get('/me', authenticationMiddleware(), function(req,res){
+
+  var username = req.user.username;
+
+  res.render('user/personal', {username : username});
+
+});
+
+Router.get('/logout', function(req,res){
+    req.logout();
+    res.redirect('/');
+});
 
 
 
+
+//Middleware for authentication.
+function authenticationMiddleware(){
+  return function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }else{
+      res.redirect('/')
+    }
+  };
+};
+
+
+module.exports = Router;
+
+//======================================
 // Router.get('/', function(req,res){
 //
 //   //If user is logged in, log them out.
@@ -163,19 +214,3 @@ Router.post('/register', function(req,res){
 //     req.logout();
 //     res.redirect('/');
 // });
-
-
-//Middleware for authentication.
-function authenticationMiddleware(){
-  return function (req, res, next) {
-    if (req.isAuthenticated()) {
-      return next()
-    }else{
-      res.redirect('/')
-    }
-  };
-};
-
-
-
-module.exports = Router;
