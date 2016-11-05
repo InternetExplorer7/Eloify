@@ -5,7 +5,7 @@ var names = require('./data.js');
 var bodyParser = require('body-parser');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
-
+var mongoose = require('mongoose');
 
 //All of the routes needed server side.
 var userRoutes = require('./server/user-routes');
@@ -32,6 +32,9 @@ app.get('/', function(req,res){
   res.render('home');
 
 });
+
+//The database that connects to an external database
+mongoose.connect('mongodb://farhan:farhan@ds145677.mlab.com:45677/eloify_db');
 
 //The pages rendered with React.js
 app.get(['/mapgame', '/react-login', '/react-register', '/mapgame2'], function(req,res){
