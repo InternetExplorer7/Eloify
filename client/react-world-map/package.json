@@ -1,0 +1,103 @@
+{
+  "_args": [
+    [
+      {
+        "name": "react-world-map",
+        "raw": "react-world-map",
+        "rawSpec": "",
+        "scope": null,
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/rillness/Desktop/webpack-practice"
+    ]
+  ],
+  "_from": "react-world-map@latest",
+  "_id": "react-world-map@1.0.13",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-world-map",
+  "_nodeVersion": "4.2.4",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/react-world-map-1.0.13.tgz_1466829356982_0.12448944570496678"
+  },
+  "_npmUser": {
+    "email": "heather.booker@hotmail.com",
+    "name": "heather.booker"
+  },
+  "_npmVersion": "3.9.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-world-map",
+    "raw": "react-world-map",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-world-map/-/react-world-map-1.0.13.tgz",
+  "_shasum": "3243c80f2ed175609b9b8ea77ae205c53c11a8bd",
+  "_shrinkwrap": null,
+  "_spec": "react-world-map",
+  "_where": "/Users/rillness/Desktop/webpack-practice",
+  "author": {
+    "name": "Heather Booker"
+  },
+  "bugs": {
+    "url": "https://github.com/heatherbooker/react-world-map/issues"
+  },
+  "dependencies": {
+    "react": "^15.1.0"
+  },
+  "description": "clickable world map built with React with css changes",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "react-dom": "^15.1.0",
+    "webpack": "^1.13.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "3243c80f2ed175609b9b8ea77ae205c53c11a8bd",
+    "tarball": "https://registry.npmjs.org/react-world-map/-/react-world-map-1.0.13.tgz"
+  },
+  "gitHead": "fbb9ff241e00bb1a884d4bd0e4b90834a0f97774",
+  "homepage": "https://github.com/heatherbooker/react-world-map#readme",
+  "keywords": [
+    "react",
+    "react-component",
+    "world",
+    "map",
+    "clickable",
+    "select",
+    "continents"
+  ],
+  "license": "WTFPL",
+  "main": "build/WorldMap.js",
+  "maintainers": [
+    {
+      "email": "heather.booker@hotmail.com",
+      "name": "heather.booker"
+    }
+  ],
+  "name": "react-world-map",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heatherbooker/react-world-map.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "compile": "babel src -d build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.13"
+}

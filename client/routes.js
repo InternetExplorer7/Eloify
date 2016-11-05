@@ -9,7 +9,10 @@ var browserHistory = ReactRouter.browserHistory;
 var App = require('../components/App.jsx');
 var LoginForm = require('../components/Auth/Login.jsx');
 var RegisterForm = require('../components/Auth/Register.jsx');
-var CustomMap = require('../components/Map.jsx');
+var CustomMap1 = require('../components/Map1.jsx');
+var CustomMap2 = require('../components/Map2.jsx');
+
+var IsoTest = require('../components/Test.jsx');
 
 var AnotherPage = React.createClass({
 
@@ -26,12 +29,13 @@ var routes = (
 
   <Router history={browserHistory}>
 
-      <Route path="/mapgame" component={CustomMap}/>
+      <Route path="/mapgame" component={CustomMap2}/>
 
-      <Route path="/react-login" component={LoginForm}/>
+      <Route path="/react-login" component={IsoTest}/>
 
       <Route path="/react-register" component={RegisterForm}/>
 
+      <Route path="/mapgame2" component={CustomMap1}/>
   </Router>
 
 )

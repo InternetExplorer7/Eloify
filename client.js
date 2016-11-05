@@ -4,7 +4,7 @@ import {MyInput, valueInputed, myNotes} from './components/CustomForm.jsx';
 import App from './components/App.jsx';
 //import Routes from './components/Routes/routes.jsx';
 import { Router, Route, Link, browserHistory, Redirect } from 'react-router';
-
+import { routes } from './client/routes';
 
 class ShoppingList extends React.Component {
   render() {
@@ -22,7 +22,7 @@ class ShoppingList extends React.Component {
 }
 
 
-ReactDOM.render(<ShoppingList/>,document.getElementById('app'));
+ReactDOM.render(routes,document);
 
 
 

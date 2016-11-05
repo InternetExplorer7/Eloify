@@ -28,7 +28,7 @@ app.get('/', function(req,res){
   res.render('home');
 });
 
-app.get(['/mapgame', '/react-login', '/react-register'], function(req,res){
+app.get(['/mapgame', '/react-login', '/react-register', '/mapgame2'], function(req,res){
 
 var ReactRouter = require('react-router');
 var match = ReactRouter.match;
