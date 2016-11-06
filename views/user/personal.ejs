@@ -3,18 +3,222 @@
   <head>
     <meta charset="utf-8">
     <title>Eloify</title>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
   </head>
+
   <body>
+
+    <div class="ui left vertical menu sidebar" id="createQs">
+
+<!-- Links to Create Questions -->
+<h3 style="color : teal; text-align : center">Create Questions</h3>
+
+
+<!-- Random question link  -->
+      <div class="item">
+        <a href="/hahah" class="header link item" style="text-align : center"> Random </a>
+      </div>
+
+
+<!-- Math question link -->
+      <div class="item">
+    <div class="header link item" style="text-align : center">Math</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">Simple</a>
+            <a class="item">Hard</a>
+        </div>
+        </div>
+
+<!-- History questions link  -->
+        <div class="item">
+          <div class="header link item" style="text-align : center">History</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">American</a>
+            <a class="item">Global</a>
+        </div>
+        </div>
+
+<!-- Language questions link -->
+        <div class="item">
+          <div class="header link item" style="text-align : center">Language</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">English</a>
+            <a class="item">Chinese</a>
+        </div>
+        </div>
+
+<!-- Literature Questions Link -->
+        <div class="item">
+          <div class="header link item" style="text-align : center">Literature</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">Philosophy</a>
+            <a class="item">Non Fiction</a>
+        </div>
+        </div>
+
+<!-- Science Questions Link -->
+  <div class="item">
+          <div class="header link item" style="text-align : center">Science</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">Chemistry</a>
+            <a class="item">Physics</a>
+        </div>
+  </div>
+
+
+<!-- Computer science questions link -->
+<div class="item">
+          <div class="header link item" style="text-align : center">Computer Science</div>
+
+        <div class="menu" style="text-align : center">
+            <a class="item">Software</a>
+            <a class="item">Artificial Intelligence</a>
+            <a class="item">Programming</a>
+            <a class="item">Languages</a>
+        </div>
+</div>
+
+
+</div>
+
+<!-- Place where you answer questions. -->
+
+<div class="ui left inverted vertical menu sidebar" id="answerQs">
+
+<h3 style="color : red; text-align : center">Answer Questions</h3>
+
+<!-- Random question link  -->
+      <div class="item">
+        <a href="/hahah" class="header link item" style="text-align : center"> Random </a>
+      </div>
+
+
+<!-- Math question link -->
+      <div class="item">
+    <div class="header link item" style="text-align : center">Math</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">Simple</a>
+            <a class="item">Hard</a>
+        </div>
+        </div>
+
+<!-- History questions link  -->
+        <div class="item">
+          <div class="header link item" style="text-align : center">History</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">American</a>
+            <a class="item">Global</a>
+        </div>
+        </div>
+
+<!-- Language questions link -->
+        <div class="item">
+          <div class="header link item" style="text-align : center">Language</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">English</a>
+            <a class="item">Chinese</a>
+        </div>
+        </div>
+
+<!-- Literature Questions Link -->
+        <div class="item">
+          <div class="header link item" style="text-align : center">Literature</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">Philosophy</a>
+            <a class="item">Non Fiction</a>
+        </div>
+        </div>
+
+<!-- Science Questions Link -->
+  <div class="item">
+          <div class="header link item" style="text-align : center">Science</div>
+        <div class="menu" style="text-align : center">
+            <a class="item">Chemistry</a>
+            <a class="item">Physics</a>
+        </div>
+  </div>
+
+
+<!-- Computer science questions link -->
+<div class="item">
+          <div class="header link item" style="text-align : center">Computer Science</div>
+
+        <div class="menu" style="text-align : center">
+            <a class="item">Software</a>
+            <a class="item">Artificial Intelligence</a>
+            <a class="item">Programming</a>
+            <a class="item">Languages</a>
+        </div>
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="ui container">
     <h1><a href="/user/logout">Logout</a></h1>
     <h1>Username : <%= username %></h1>
+    <h1>ELO Score : <%= score %></h1>
 
-  <ul>
+
+
+
+<!-- Test Buttons to use later. -->
+    <a class="ui button large" id='questions'>Answer Questions</a>
+    <a class="ui button large" id="createQuestions">Create Questions</a>
+
+
+</div>
+
+  <!-- <ul>
     <h3>This will be the users personal page. We will show...</h3>
     <li><h4>Stats</h4></li>
     <li><h4>Friends</h4></li>
     <li><h4>Followers/Following</h4></li>
     <li><h4>ELO Score</h4></li>
     <li><h4>Questions Created/ Answered </h4></li>
-  </ul>
+  </ul> -->
+
+  <!-- <div class="ui visible sidebar dimmed pusher vertical menu">
+  <a class="item">
+    Math
+  </a>
+  <a class="item">
+    2
+  </a>
+  <a class="item">
+    3
+  </a>
+</div> -->
+
+
+
+
+<script type="text/javascript">
+
+//$('.ui.sidebar').sidebar('toggle');
+
+$('#questions').click(function(){
+  $('#answerQs').sidebar('toggle');
+});
+
+$('#createQuestions').click(function(){
+  $('#createQs').sidebar('toggle');
+});
+
+</script>
+
   </body>
 </html>

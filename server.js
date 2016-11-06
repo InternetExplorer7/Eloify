@@ -6,10 +6,15 @@ var bodyParser = require('body-parser');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var mongoose = require('mongoose');
+var passport = require('passport');
+var passportLocal = require('passport-local');
+var passportLocalMongoose = require('passport-local-mongoose');
+
 
 //All of the routes needed server side.
 var userRoutes = require('./server/user-routes');
 var gameRoutes = require('./server/game-routes');
+var User = require('./server/models/users-db.js');
 
 
 require('babel-register')({
@@ -27,9 +32,15 @@ app.use('/game', gameRoutes);
 
 app.set('view engine', 'ejs');
 
+// // // // // // // // // // // // // // // // // //
+
 //The landing page.
 app.get('/', function(req,res){
 
+  if(req.isAuthenticated()){
+    console.log('AUTH BITCHES!!');
+  }
+  //console.log(req.user);
   res.render('home');
 
 });

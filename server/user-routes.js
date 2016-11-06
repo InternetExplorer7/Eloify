@@ -78,7 +78,10 @@ Router.post('/register', function(req,res){
   var postPassword = req.body.password;
 
 
-    User.register(new User({username : postUsername}),postPassword, function(err,body){
+    User.register(new User({
+      username : postUsername,
+      score : 0
+    }),postPassword, function(err,body){
         if(err){
             console.log(err);
         }else{
@@ -93,8 +96,12 @@ Router.post('/register', function(req,res){
 Router.get('/me', authenticationMiddleware(), function(req,res){
 
   var username = req.user.username;
+  var score = req.user.score;
 
-  res.render('user/personal', {username : username});
+  res.render('user/personal', {
+    username : username,
+    score : score
+  });
 
 });
 
@@ -112,7 +119,7 @@ function authenticationMiddleware(){
     if (req.isAuthenticated()) {
       return next()
     }else{
-      res.redirect('/')
+      res.redirect('/user/login')
     }
   };
 };
