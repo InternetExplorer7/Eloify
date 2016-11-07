@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Eloify</title>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
+
+  </head>
+  <body>
+
+  <div class="ui container">
+    <h1>Simple Random Questions</h1>
+<h3>Get all three right, +50, get even one wrong -50.</h3>
+    <p>* Disclaimer: this is a simple quiz to test out the functionality of saving points in the database.*</p>
+
+
+<h2 style="text-align : center"><i>Questions</i></h2>
+
+<div class="question" id="question1">
+
+  <form action="/user/q/random" method="post" class="ui form">
+
+<!-- Question 1 -->
+
+  <h3>1) What is the capital of Nicaragua?</h3>
+
+
+    <h4>Tijuana
+<input type="checkbox" name="q1" value="a">
+    </h4>
+
+    <h4>Assanagua
+<input type="checkbox" name="q1" value="b" >
+   </h4>
+
+   <h4>Cocaine
+<input type="checkbox" name="q1" value="c" >
+  </h4>
+
+  <h4>Managua
+<input type="checkbox" name="q1" value="d" >
+ </h4>
+
+<!-- Question 2 -->
+<h3>2) Two angles of a triangle measure 15° and 85 °. What is the measure for the third angle?</h3>
+
+
+  <h4>50°
+<input type="checkbox" name="q2" value="a">
+  </h4>
+
+  <h4>55°
+<input type="checkbox" name="q2" value="b" >
+ </h4>
+
+ <h4>60°
+<input type="checkbox" name="q2" value="c" >
+</h4>
+
+<h4>80°
+<input type="checkbox" name="q2" value="d" >
+</h4>
+
+
+<!-- Question 3 -->
+<h3>3)Which of the following is equal to 5.93 x 10 to the negative 2nd power?</h3>
+
+
+  <h4>0.0593
+<input type="checkbox" name="q3" value="a">
+  </h4>
+
+  <h4>0.00593
+<input type="checkbox" name="q3" value="b" >
+ </h4>
+
+ <h4>593
+<input type="checkbox" name="q3" value="c" >
+</h4>
+
+<h4>593
+<input type="checkbox" name="q3" value="d" >
+</h4>
+
+
+<!-- Question 4 -->
+
+
+    <input style="text-align : center" type="submit" value="Submit" class="ui button green">
+
+  </form>
+
+</div>
+
+
+ </div>
+
+<br><br><br>
+  </body>
+</html>

@@ -92,7 +92,7 @@ Router.post('/register', function(req,res){
     });
 });
 
-
+//Profile Route.
 Router.get('/me', authenticationMiddleware(), function(req,res){
 
   var username = req.user.username;
@@ -105,12 +105,121 @@ Router.get('/me', authenticationMiddleware(), function(req,res){
 
 });
 
+//The route that logs you out.
 Router.get('/logout', function(req,res){
     req.logout();
     res.redirect('/');
 });
 
+var myUserId;
 
+
+//Rendering a simple quiz game.
+Router.get('/q/random', authenticationMiddleware(), function(req,res){
+
+  var UserId = req.user._id;
+  myUserId = req.user._id;
+
+  res.render('quiz/simple-math');
+
+});
+
+
+//This is where the score gets changed.
+Router.post('/q/random', authenticationMiddleware(), function(req,res){
+
+var questions = [req.body.q1, req.body.q2, req.body.q3]
+var answers = ['d', 'd', 'a'];
+
+if(questions[0] == 'd' && questions[1] == 'd' && questions[2] == 'a'){
+
+  console.log('Correct');
+  addScore();
+
+
+}else{
+
+  console.log('Wrong');
+  minusScore();
+
+}
+
+// if(questions[1] == 'd'){
+//   console.log('Correct');
+//   addScore();
+// }else{
+//   console.log('Wrong');
+//   minusScore();
+// }
+//
+// if(questions[2] == 'a'){
+//
+//   console.log('Correct');
+//   addScore();
+//
+// }else{
+//   console.log('Wrong');
+//   minusScore();
+// }
+
+  res.render('quiz/simple-answers', {
+    questions : questions,
+    answers : answers
+  });
+
+});
+
+
+//Add ELO score to db.
+function addScore(){
+
+//Find the score in the DB.
+User.findById(myUserId,function(err,body){
+  if(err){
+    console.log(err);
+  }else{
+
+  var userScore = Number(body.score);
+
+   body.score = Number(body.score) + 50;
+
+   body.save(function(err,num){
+     if(err){
+       console.log(err);
+     }else{
+        console.log('Score Updated');
+      }
+     });
+   }
+  });
+
+};
+
+//Subtract ELO score from db.
+function minusScore(){
+
+
+  //Find the score in the DB.
+  User.findById(myUserId,function(err,body){
+    if(err){
+      console.log(err);
+    }else{
+
+    var userScore = Number(body.score);
+
+    body.score = Number(body.score) - 50;
+
+     body.save(function(err,num){
+       if(err){
+         console.log(err);
+       }else{
+          console.log('Score Updated');
+        }
+       });
+     }
+    });
+
+}
 
 
 //Middleware for authentication.
