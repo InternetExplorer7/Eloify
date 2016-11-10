@@ -14,11 +14,42 @@
 
   </head>
   <body>
-<div class="ui container">
-  <br>
-  <a class="ui button" href="/user/viewQs">View User Created Questions</a>
+<!--  -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="item" href="/">Eloify</a>
+
+
+
+    <div class="right menu">
+
+      <div class="item">
+        <a class="ui button" href="/user/logout">Log Out</a>
+      </div>
+
+      <div class="item">
+        <a class="ui primary button" href="/user/me"> <i class="user icon"></i> Profile </a>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    <!--  -->
+    <div class="ui container">
+
+  <br><br><br>
+
     <h1>Create a Question</h1>
 
+<a class="ui button" href="/user/viewQs">View User Created Questions</a>
+
+<br><br>
     <form action="/user/submitQs" method="post">
 
 <div class="ui form">

@@ -16,6 +16,28 @@
   </head>
 
   <body>
+    <!--  -->
+    <div class="ui large top fixed hidden menu">
+      <div class="ui container">
+        <a class="item" href="/">Eloify</a>
+
+
+
+        <div class="right menu">
+
+          <div class="item">
+            <a class="ui button" href="/user/logout">Log Out</a>
+          </div>
+
+          <div class="item">
+            <a class="ui primary disabled button" href="/user/me"> <i class="user icon"></i> Profile </a>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+<!--  -->
 
     <div class="ui left vertical menu sidebar" id="createQs">
 
@@ -176,9 +198,8 @@
 
 
 
-
+<br><br><br><br>
 <div class="ui container">
-    <h1><a href="/user/logout">Logout</a></h1>
     <h1>Username : <%= username %></h1>
     <h1>ELO Score : <%= score %></h1>
 
