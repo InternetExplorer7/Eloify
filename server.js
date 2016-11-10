@@ -45,7 +45,7 @@ app.get('/', function(req,res){
 
 });
 
-
+//The way you find a user.
 app.get('/:user', function(req,res){
 
   var userSearched = req.params.user;

@@ -4,8 +4,21 @@ var express = require('express');
 var Router = express.Router();
 
 // // // // // // // // // // // // // // // // // //
+//Getting todays date
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
 
+if(dd<10) {
+    dd='0'+dd
+}
 
+if(mm<10) {
+    mm='0'+mm
+}
+
+today = mm+'/'+dd+'/'+yyyy;
 
 
 // // // // // // // // // // // // // // // // // //
@@ -16,7 +29,9 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var bodyParser = require('body-parser');
 
 
+//Database models.
 var User = require('./models/users-db.js');
+var Question = require('./models/questions-db.js');
 
 //======================================
 // --- Middleware so we can use sessions.
@@ -169,9 +184,30 @@ if(questions[0] == 'd' && questions[1] == 'd' && questions[2] == 'a'){
 
 });
 
+
+//User posted answer to user generated questions.
+Router.post('/qs/:id', function(req,res){
+
+  console.log(req.params.id);
+
+
+  res.redirect('/user/me');
+});
+
 //Viewing Questions that users created.
 Router.get('/viewQs', function(req,res){
-  res.render('quiz/viewQs/test');
+
+  Question.find({}, function(err,body){
+    if(err){
+      console.log(err)
+    }else{
+
+      console.log(body);
+      res.render('quiz/viewQs/test', { questions : body });
+
+    }
+  });
+
 });
 
 //Creating questions that users can score by.
@@ -179,6 +215,7 @@ Router.get('/createQs', authenticationMiddleware(), function(req,res){
   res.render('quiz/createQs/test');
 });
 
+//The place where you submit questions.
 Router.post('/submitQs', authenticationMiddleware(), function(req,res){
 
 //This is the main question that is getting asked.
@@ -199,13 +236,40 @@ var correctChoice = req.body.choice;
 //Here is the user to save.
 var userCreator = req.user.username;
 
-
-// TODO: Get the date, and have a database linked up with everything.
-
-  res.redirect('/user/createQs');
+var newQuestion = new Question({
+  date : today,
+  username : userCreator,
+  question : mainQuestion,
+  choices : {
+    a : questionA,
+    b : questionB,
+    c : questionC,
+    d : questionD
+  },
+  correctAnswer : correctChoice,
+  likes : 0,
+  dislikes : 0
 });
 
-//A way to search for users publicly.
+newQuestion.save((err,body) => {
+  if(err){
+    console.log(err);
+  }else{
+    console.log('SAVED');
+  }
+});
+
+  res.redirect('/user/submitted');
+});
+
+//The page after a user submits a question.
+Router.get('/submitted', function(req,res){
+
+  res.render('quiz/createQs/submit');
+
+});
+
+//A way to update the users public profile.
 Router.get('/public/:user', authenticationMiddleware(), function(req,res){
   var userSearched = req.params.user;
 

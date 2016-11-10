@@ -3,8 +3,69 @@
   <head>
     <meta charset="utf-8">
     <title>Eloify</title>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
+
   </head>
   <body>
-  <h1>This is where you view questions.</h1>    
+
+  <div class="ui container">
+    <h1>User Submitted Questions </h1>
+
+<a href="/user/createQs" class="ui button">Create Question</a>
+
+<h2 style="text-align : center"><i>Questions</i></h2>
+
+<div class="question" id="question1">
+
+<% questions.map(function(question,num){ %>
+
+
+  <form action="/user/qs/<%= question._id %>" method="post" class="ui form">
+
+<!-- Question 1 -->
+
+  <h3><%= num + 1 %>) <%= question.question %>  </h3>
+
+
+    <h4><%= question.choices.a%>
+<input type="checkbox" name="q1" value="<%= question.choices.a %>">
+    </h4>
+
+    <h4><%= question.choices.b%>
+<input type="checkbox" name="q1" value="<%= question.choices.b %>" >
+   </h4>
+
+   <h4><%= question.choices.c%>
+<input type="checkbox" name="q1" value="<%= question.choices.c %>" >
+  </h4>
+
+  <h4><%= question.choices.d%>
+<input type="checkbox" name="q1" value="<%= question.choices.d %>" >
+ </h4>
+
+
+<p style="margin-top : 35px">Date Created : <%= question.date %></p>
+ <p>Author : <a href="http://www.eloify.com/<%= question.username%>"><%= question.username %></a></p>
+
+    <input style="text-align : center" type="submit" value="Answer" class="ui button green">
+  <br><br><br>
+  </form>
+<% }) %>
+
+</div>
+
+
+ </div>
+
+<br><br><br>
   </body>
 </html>
