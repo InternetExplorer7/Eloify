@@ -45,6 +45,48 @@ app.get('/', function(req,res){
 
 });
 
+
+app.get('/:user', function(req,res){
+
+  var userSearched = req.params.user;
+
+      // Querying the database and getting the names //
+// // // // // // // // // // // // // // // // // // // // //
+User.find({ username : userSearched}, function(err,body){
+    if(err){
+      console.log(err);
+      console.log('HAHAHAH');
+    }else{
+
+      //See if there is a username with a try statement.
+      try {
+        var userName = body[0].username;
+        var userScore = body[0].score;
+      } catch (e) {
+        //userName = 'Invalid Bullshit';
+      //  res.render('user/cannotfind');
+      } finally {
+        // Code that goes if success.
+      }
+
+if(userName == undefined){
+  res.render('user/cannotfind');
+}else {
+
+  //If no error, we render your public profile.
+      res.render('user/public-profile',{
+          userName : userName,
+          userScore : userScore
+        });
+    }
+
+  }
+})
+// // // // // // // // // // // // // // // // // // // // //
+
+});
+
+
 //The database that connects to an external database
 mongoose.connect('mongodb://farhan:farhan@ds145677.mlab.com:45677/eloify_db');
 

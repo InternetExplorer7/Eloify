@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Eloify</title>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
+  </head>
+  <body>
+<div class="ui container">
+    <h1>This is where you create questions</h1>
+
+    <form action="/user/submitQs" method="post">
+
+<div class="ui form">
+  <div class="field">
+    <label>Enter Question</label>
+    <textarea rows="2" style="margin-top: 0px; margin-bottom: 0px; height: 85px;" name="question"></textarea>
+  </div>
+
+  <div class="ui form">
+    <div class="fields">
+      <div class="field">
+        <label>Choice A</label>
+        <input type="text" placeholder="Choice A" name="qA">
+      </div>
+      <div class="field">
+        <label>Choice B</label>
+        <input type="text" placeholder="Choice B" name="qB">
+      </div>
+      <div class="field">
+        <label>Choice C</label>
+        <input type="text" placeholder="Choice C" name="qC">
+      </div>
+      <div class="field">
+        <label>Choice D</label>
+        <input type="text" placeholder="Choice D" name="qD">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<br>
+
+    <div class="ui form">
+  <h3>Select the correct Answer</h3>
+      <div class="inline fields">
+
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="choice" checked="" tabindex="0" class="hidden" value="A">
+            <label>A</label>
+          </div>
+
+  <br>
+
+          <div class="ui radio checkbox">
+            <input type="radio" name="choice" checked="" tabindex="0" class="hidden" value="B">
+            <label>B</label>
+          </div>
+<br>
+
+          <div class="ui radio checkbox">
+            <input type="radio" name="choice" checked="" tabindex="0" class="hidden" value="C">
+            <label>C</label>
+          </div>
+
+<br>
+          <div class="ui radio checkbox">
+            <input type="radio" name="choice" checked="" tabindex="0" class="hidden" value="D">
+            <label>D</label>
+          </div>
+<br> <br>
+<button class="ui button large">Submit</button>
+            </div>
+
+
+
+          </div>
+
+    </form>
+
+
+
+<script type="text/javascript">
+
+$('.ui.radio.checkbox').checkbox();
+
+</script>
+
+  </body>
+
+</html>

@@ -169,6 +169,72 @@ if(questions[0] == 'd' && questions[1] == 'd' && questions[2] == 'a'){
 
 });
 
+//Viewing Questions that users created.
+Router.get('/viewQs', function(req,res){
+  res.render('quiz/viewQs/test');
+});
+
+//Creating questions that users can score by.
+Router.get('/createQs', authenticationMiddleware(), function(req,res){
+  res.render('quiz/createQs/test');
+});
+
+Router.post('/submitQs', authenticationMiddleware(), function(req,res){
+
+//This is the main question that is getting asked.
+var mainQuestion = req.body.question;
+
+// These are the answers to the questions.
+  var questionA = req.body.qA;
+  var questionB = req.body.qB;
+  var questionC = req.body.qC;
+  var questionD = req.body.qD;
+
+// All of the answers in an array.
+var allQuestions = [questionA, questionB, questionC, questionD];
+
+// Correct choice to the questions.
+var correctChoice = req.body.choice;
+
+//Here is the user to save.
+var userCreator = req.user.username;
+
+console.log(userCreator);
+// TODO: Get the date, and the user.
+
+  res.redirect('/user/createQs');
+});
+
+//A way to search for users publicly.
+Router.get('/public/:user', function(req,res){
+  var userSearched = req.params.user;
+
+  User.find({ username : userSearched}, function(err,body){
+    if(err){
+      console.log(err);
+      res.send('ERROR');
+    }else{
+
+      //See if there is a username with a try statement.
+      try {
+        var userName = body[0].username;
+        var userScore = body[0].score;
+      } catch (e) {
+        //userName = 'Invalid Bullshit';
+        res.render('user/cannotfind');
+      } finally {
+        // Code that goes if success.
+      }
+
+      //If no error, we render your public profile.
+      res.render('user/public-profile',{
+        userName : userName,
+        userScore : userScore
+        });
+      }
+    })
+
+  });
 
 //Add ELO score to db.
 function addScore(){
