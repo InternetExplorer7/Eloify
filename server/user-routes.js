@@ -199,14 +199,14 @@ var correctChoice = req.body.choice;
 //Here is the user to save.
 var userCreator = req.user.username;
 
-console.log(userCreator);
-// TODO: Get the date, and the user.
+
+// TODO: Get the date, and have a database linked up with everything.
 
   res.redirect('/user/createQs');
 });
 
 //A way to search for users publicly.
-Router.get('/public/:user', function(req,res){
+Router.get('/public/:user', authenticationMiddleware(), function(req,res){
   var userSearched = req.params.user;
 
   User.find({ username : userSearched}, function(err,body){
