@@ -33,6 +33,12 @@ var bodyParser = require('body-parser');
 var User = require('./models/users-db.js');
 var Question = require('./models/questions-db.js');
 
+
+// Routes seperated in Other files.
+var quizRoutes = require('./quiz-routes')(Router);
+
+
+
 //======================================
 // --- Middleware so we can use sessions.
 Router.use(require('express-session')({
@@ -185,14 +191,6 @@ if(questions[0] == 'd' && questions[1] == 'd' && questions[2] == 'a'){
 });
 
 
-//User posted answer to user generated questions.
-Router.post('/qs/:id', function(req,res){
-
-  console.log(req.params.id);
-
-
-  res.redirect('/user/me');
-});
 
 //Viewing Questions that users created.
 Router.get('/viewQs', function(req,res){
@@ -202,7 +200,6 @@ Router.get('/viewQs', function(req,res){
       console.log(err)
     }else{
 
-      console.log(body);
       res.render('quiz/viewQs/test', { questions : body });
 
     }
@@ -217,6 +214,10 @@ Router.get('/createQs', authenticationMiddleware(), function(req,res){
 
 //The place where you submit questions.
 Router.post('/submitQs', authenticationMiddleware(), function(req,res){
+
+//Topics for the question being asked.
+var topics = req.body.topics;
+
 
 //This is the main question that is getting asked.
 var mainQuestion = req.body.question;
@@ -250,6 +251,61 @@ var newQuestion = new Question({
   likes : 0,
   dislikes : 0
 });
+
+
+//TEMPORARY
+//Pushing the topics to the database;
+if(topics == undefined){
+  console.log('Topics are undefined');
+
+}else{
+
+  topics.forEach((eachTopic) => {
+
+    newQuestion.topics.push(eachTopic);
+});
+
+}
+
+if(topics.length == '3'){
+  console.log('There are 3 topics')
+}
+
+
+
+            // TODO: This is where topics will be saved with a link tag as well!!!!
+// var fullTopics = [];
+//
+// var topicObject;
+//
+// //Topics that are being taken from the server.
+// if(topics == undefined){
+//   console.log('Topics are undefined');
+// }else{
+//
+//   topics.forEach((eachTopic) => {
+//
+//   if(eachTopic == 'Some Title'){
+//
+//     topicObject = {
+//       name : eachTopic,
+//       url : '/test'
+//     }
+//
+//   fullTopics.push(topicObject);
+//
+//   }
+//
+//
+//
+//
+//
+//     newQuestion.topics.push(eachTopic);
+// });
+//
+//
+// }
+
 
 newQuestion.save((err,body) => {
   if(err){

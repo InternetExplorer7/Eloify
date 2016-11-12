@@ -14,7 +14,8 @@ var questionSchema = new mongoose.Schema({
   },
   correctAnswer : String,
   likes : Number,
-  dislikes : Number
+  dislikes : Number,
+  topics : []
 });
 
 var Question = mongoose.model('Questions', questionSchema);

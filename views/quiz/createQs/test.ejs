@@ -43,16 +43,53 @@
     <!--  -->
     <div class="ui container">
 
-  <br><br><br>
+  <br><br><br><br>
 
-    <h1>Create a Question</h1>
+<a class="ui button small" href="/user/viewQs">View User Created Questions</a>
 
-<a class="ui button" href="/user/viewQs">View User Created Questions</a>
+    <h1 style="text-align : center">Create a Question</h1>
 
-<br><br>
+
+
+
     <form action="/user/submitQs" method="post">
+<br><br>
+
+  <h3>Select A Topic</h3>
+<select name="topics" multiple="" class="ui fluid search dropdown">
+  <option value="">Select Topic(s)</option>
+
+<!-- Math topics/ -->
+<option value="Math(Simple)">Math(Simple)</option>
+<option value="Math(Hard)">Math(Hard)</option>
+
+<!-- History topics. -->
+<option value="History(US)">History(US)</option>
+<option value="History(World)">History(World)</option>
+
+<!-- Language topics. -->
+<option value="Language(English)">Language(English)</option>
+<option value="Language(Spanish)">Language(Spanish)</option>
+
+<!-- Literature topics -->
+<option value="Literature(Philosophy)">Literature(Philosophy)</option>
+<option value="Literature(Non-fiction)">Literature(Non-fiction)</option>
+
+<!-- Science Topics -->
+<option value="Science(Chemistry)">Science(Chemistry)</option>
+<option value="Science(Physics)">Science(Physics)</option>
+
+<!-- Computer Science Topics -->
+<option value="Computer Science(Software)">Computer Science(Software)</option>
+<option value="Computer Science(AI)">Computer Science(AI)</option>
+<option value="Computer Science(Languages)">Computer Science(Languages)</option>
+
+
+</select>
 
 <div class="ui form">
+
+<br>
   <div class="field">
     <label>Enter Question</label>
     <textarea rows="2" style="margin-top: 0px; margin-bottom: 0px; height: 85px;" name="question"></textarea>
@@ -127,6 +164,10 @@
 <script type="text/javascript">
 
 $('.ui.radio.checkbox').checkbox();
+
+$('.ui.dropdown')
+  .dropdown()
+;
 
 </script>
 
