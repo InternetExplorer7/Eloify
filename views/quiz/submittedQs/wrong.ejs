@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Eloify</title>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
+
+  </head>
+  <body>
+<br><br>
+
+    <h1 style="text-align : center; color : red">WRONG ANSWER</h1>
+      <p style="text-align : center; color : red">- 50 points</p>
+
+      <br>
+                <div class="ui container">
+<h1><%= question %></h1>
+
+
+<h3>a) <%= choices.a %></h3>
+<h3>b) <%= choices.b %></h3>
+<h3>c) <%= choices.c %></h3>
+<h3>d) <%= choices.d %></h3>
+
+
+
+
+<h2>The Correct Answer : <%= correctAnswer %></h2>
+
+  <h2> You chose: <%= answerSelected %></h2>
+
+<h5 style="text-align : center">Rate this quiz.</h5>
+
+
+  <div style="text-align : center">
+<h1 style="text-align : center; display : inline">
+
+<!-- TODO - Make the POST GO TO THE ROUTE, AND MAKE IT WORK WITH ROUTER!! -->
+
+<form  action="/user/thumbup/<%= questionId %>/<%= username %>" method="post" style="display : inline; text-align : center">
+  <button class="ui button" style="padding : .98571429em 5.5em">
+    <i class="thumbs outline up icon green"></i>
+  </button>
+</form>
+</h1>
+
+<h1 style="text-align : center; display : inline">
+<form  action="/user/thumbdown/<%= questionId %>/<%= username %>" method="post" style="display : inline; text-align : center">
+  <button class="ui button" style="padding : .98571429em 5.5em">
+    <i class="thumbs outline down icon red"></i>
+  </button>
+</form>
+
+<h1>
+
+  <a href="/user/me" style="float : middle">Skip</a>
+
+</div>
+
+
+<br><br>
+
+
+
+
+                  </div>
+
+
+<br><br><br>
+
+  </body>
+</html>

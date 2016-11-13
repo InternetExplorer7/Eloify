@@ -13,8 +13,8 @@ var questionSchema = new mongoose.Schema({
     d : String
   },
   correctAnswer : String,
-  likes : Number,
-  dislikes : Number,
+  likes : [],
+  dislikes : [],
   topics : []
 });
 

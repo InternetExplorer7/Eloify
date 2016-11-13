@@ -127,7 +127,17 @@ var userScore = Number(req.user.score);
     if(err){
       console.log(err)
     }else{
-      res.redirect('/user/me');
+
+      res.render('quiz/submittedQs/correct', {
+        question : body.question,
+        choices : body.choices,
+        correctAnswer : correctAnswer,
+        correctChoice : correctChoice,
+        answerSelected : answerSelected,
+        username : req.user.username,
+        questionId : QuestionId
+      });
+
     }
   })
 
@@ -161,7 +171,17 @@ var userScore = Number(req.user.score);
     if(err){
       console.log(err)
     }else{
-      res.redirect('/user/me');
+
+      res.render('quiz/submittedQs/wrong', {
+        question : body.question,
+        choices : body.choices,
+        correctAnswer : correctAnswer,
+        correctChoice : correctChoice,
+        answerSelected : answerSelected,
+        username : req.user.username,
+        questionId : QuestionId
+      });
+
     }
   })
 
@@ -175,7 +195,60 @@ var userScore = Number(req.user.score);
 
 });
 
+Router.post('/thumbup/:id/:user', authenticationMiddleware(), function(req,res){
 
+var userName = req.user.username;
+var questionId = req.params.id;
+
+Questions.findById(questionId, function(err,body){
+  if(err){
+    console.log(err)
+  }else{
+
+    body.likes.push(userName);
+
+    body.save((err) =>{
+      if(err){
+        console.log(err)
+      }else{
+         // Nothing much to do here.
+      }
+    })
+  }
+
+});
+
+res.redirect('/user/viewQs');
+
+});
+
+Router.post('/thumbdown/:id/:user', authenticationMiddleware(), function(req,res){
+
+  var userName = req.user.username;
+  var questionId = req.params.id;
+
+  Questions.findById(questionId, function(err,body){
+    if(err){
+      console.log(err)
+    }else{
+
+      body.dislikes.push(userName);
+
+      body.save((err) =>{
+        if(err){
+          console.log(err)
+        }else{
+          // Nothing much to do here.
+        }
+      })
+    }
+
+  });
+
+
+res.redirect('/user/viewQs');
+
+});
 
   //Middleware for authentication.
   function authenticationMiddleware(){

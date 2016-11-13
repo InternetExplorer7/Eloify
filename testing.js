@@ -138,4 +138,4 @@ var testing2 = [
 
   ];
 
-console.log(testing2[0].username)
+console.log(testing2.username)
