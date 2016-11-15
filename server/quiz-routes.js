@@ -3,7 +3,7 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 var bodyParser = require('body-parser');
-
+var _ = require('lodash');
 //DB Models
 var User = require('./models/users-db');
 var Questions = require('./models/questions-db');
@@ -205,15 +205,29 @@ Questions.findById(questionId, function(err,body){
     console.log(err)
   }else{
 
-    body.likes.push(userName);
+var questionDislikes = body.dislikes;
+var questionLikes = body.likes;
 
-    body.save((err) =>{
-      if(err){
-        console.log(err)
-      }else{
-         // Nothing much to do here.
-      }
-    })
+//Checking if Dislike exists with current username.
+var dislikeCheck = _.includes(questionDislikes, req.user.username);
+var likeCheck = _.includes(questionLikes, req.user.username);
+
+if (dislikeCheck || likeCheck){
+  //Nothing much to do here.
+}else {
+
+  body.likes.push(userName);
+
+  body.save((err) =>{
+    if(err){
+      console.log(err)
+    }else{
+       // Nothing much to do here.
+    }
+  })
+
+}
+
   }
 
 });
@@ -224,6 +238,8 @@ res.redirect('/user/viewQs');
 
 Router.post('/thumbdown/:id/:user', authenticationMiddleware(), function(req,res){
 
+
+
   var userName = req.user.username;
   var questionId = req.params.id;
 
@@ -232,15 +248,30 @@ Router.post('/thumbdown/:id/:user', authenticationMiddleware(), function(req,res
       console.log(err)
     }else{
 
-      body.dislikes.push(userName);
+var questionDislikes = body.dislikes;
+var questionLikes = body.likes;
 
-      body.save((err) =>{
-        if(err){
-          console.log(err)
-        }else{
-          // Nothing much to do here.
-        }
-      })
+//Checking if Dislike exists with current username.
+var dislikeCheck = _.includes(questionDislikes, req.user.username);
+var likeCheck = _.includes(questionLikes, req.user.username);
+
+if (dislikeCheck || likeCheck){
+  // Nothing to do.
+}else {
+
+  body.dislikes.push(userName);
+
+  body.save((err) =>{
+    if(err){
+      console.log(err)
+    }else{
+      // Nothing much to do here.
+    }
+  })
+
+}
+
+
     }
 
   });

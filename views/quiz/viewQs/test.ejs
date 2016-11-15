@@ -25,13 +25,32 @@
 
         <div class="right menu">
 
-          <div class="item">
-            <a class="ui button" href="/user/logout">Log Out</a>
-          </div>
+ <% if(username == 'unavailable') { %>
 
-          <div class="item">
-            <a class="ui primary button" href="/user/me"> <i class="user icon"></i> Profile </a>
-          </div>
+   <div class="item">
+     <a class="ui button" href="/user/login">Sign In</a>
+   </div>
+
+   <div class="item">
+     <a class="ui green button" href="/user/register"> <i class="user icon"></i> Register </a>
+   </div>
+
+
+
+ <%}else{%>
+
+   <div class="item">
+     <a class="ui button" href="/user/logout">Log Out</a>
+   </div>
+
+   <div class="item">
+     <a class="ui primary button" href="/user/me"> <i class="user icon"></i> <%= username %> </a>
+   </div>
+
+
+
+ <%}%>
+
 
 
         </div>
@@ -41,15 +60,136 @@
     <!--  -->
 <br><br><br>
   <div class="ui container">
-    <h1>User Submitted Questions </h1>
 
+<br>
 <a href="/user/createQs" class="ui button">Create Question</a>
 
-<h2 style="text-align : center"><i>Questions</i></h2>
+<h2 style="text-align : center"><i>Topic:</i></h2>
+
+<hr><br>
 
 <div class="question" id="question1">
 
 <% questions.map(function(question,num){ %>
+
+
+
+
+
+ <%  if( _.includes(answeredQuestions , String(question._id) )){ %>
+
+<div style="margin-bottom : 5px; text-align : center">
+   <form action="/user/thumbup/<%= question._id %>/<%= username %>" method="post" style="display : inline">
+
+
+        <button class="ui button inverted green">
+   <i class="thumbs up icon black"></i>
+   <%= question.likes.length - 1 %>
+        </button>
+
+
+   </form>
+
+
+   <form action="/user/thumbdown/<%= question._id %>/<%= username %>" method="post" style="display : inline">
+
+
+        <button class="ui button inverted red">
+   <i class="thumbs down icon black"></i>
+   <%= question.dislikes.length - 1 %>
+        </button>
+
+
+   </form>
+</div>
+
+  <br>
+
+
+   <form action="/user/viewQs" method="get" class="ui form">
+
+ <!-- Question 1 -->
+
+   <h3><%= num + 1 %>) <%= question.question %>  </h3>
+
+
+     <h4><%= question.choices.a%>
+ <input type="checkbox" name="q1" value="a">
+     </h4>
+
+     <h4><%= question.choices.b%>
+ <input type="checkbox" name="q1" value="b" >
+    </h4>
+
+    <h4><%= question.choices.c%>
+ <input type="checkbox" name="q1" value="c" >
+   </h4>
+
+   <h4><%= question.choices.d%>
+ <input type="checkbox" name="q1" value="d" >
+  </h4>
+
+  <!-- <p style="display : inline; margin-right : 14px">
+     <a href="/user/viewQs">
+<i class="thumbs up icon green"></i>
+     </a>
+      <%= question.likes.length - 1 %>
+  </p>
+
+  <p style="display : inline; margin-right : 14px">
+     <a href="/user/viewQs">
+<i class="thumbs down icon red"></i>
+     </a>
+      <%= question.dislikes.length - 1 %>
+  </p> -->
+
+
+
+
+
+ <p style="margin-top : 25px">Date Created : <%= question.date %></p>
+  <p>Author : <a href="http://www.eloify.com/<%= question.username%>"><%= question.username %></a></p>
+
+
+
+   <input style="" type="submit" value="Already Answered" class="ui button yellow">
+
+   <br><br><br>
+
+
+<hr> <br>
+   </form>
+
+
+<%  }else{ %>
+
+  <div style="margin-bottom : 5px; text-align : center">
+     <form action="/user/thumbup/<%= question._id %>/<%= username %>" method="post" style="display : inline">
+
+
+          <button class="ui button inverted green">
+     <i class="thumbs up icon black"></i>
+     <%= question.likes.length - 1 %>
+          </button>
+
+
+     </form>
+
+
+     <form action="/user/thumbdown/<%= question._id %>/<%= username %>" method="post" style="display : inline">
+
+
+          <button class="ui button inverted red">
+     <i class="thumbs down icon black"></i>
+     <%= question.dislikes.length - 1 %>
+          </button>
+
+
+     </form>
+  </div>
+
+    <br>
+
 
 
   <form action="/user/qs/<%= question._id %>" method="post" class="ui form">
@@ -76,12 +216,29 @@
  </h4>
 
 
-<p style="margin-top : 35px">Date Created : <%= question.date %></p>
+<p style="margin-top : 25px">Date Created : <%= question.date %></p>
  <p>Author : <a href="http://www.eloify.com/<%= question.username%>"><%= question.username %></a></p>
 
-    <input style="text-align : center" type="submit" value="Answer" class="ui button green">
+
+
+  <input style="text-align : center" type="submit" value="Answer" class="ui button green">
+
   <br><br><br>
+
+
+<hr> <br>
   </form>
+
+
+
+
+<% }   %>
+
+
+
+
+
+
 <% }) %>
 
 </div>
@@ -90,5 +247,14 @@
  </div>
 
 <br><br><br>
+<script src="lodash.js">
+
+var _ = require('lodash')
+
+var hell = [1,2,3,4]
+
+alert(_.includes(hell, 3))
+
+</script>
   </body>
 </html>

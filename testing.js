@@ -127,15 +127,103 @@
 //
 
 
-var testing2 = [
-   { _id: '5826ce41b8f8de6a4ce83c05',
-    username: 'fuad',
-    score: '0',
-    __v: 0,
-    answeredQs: [] } ,
+var _ = require('lodash');
 
 
 
+var questions = [
+
+  {
+    _id : {
+        $oid : "58291284d6cb477289d73ea8"
+    }
+  },
+
+  {
+    _id : {
+        $oid : "58291284d6cb477289d74ea8"
+    }
+  },
+
+  {
+    _id : {
+        $oid : "58291284d6cb477289d75ea8"
+    }
+  },
+
+  {
+    _id : {
+        $oid : "58291284d6cb477289d76ea8"
+    }
+  }
+
+];
+
+
+var answeredQs = [
+       {
+           status: "correct",
+           id: "58291284d6cb477289d73ea8"
+       },
+       {
+         status: "correct",
+         id: "58291284d6cb477289d74ea8"
+       },
+       {
+         status: "correct",
+         id: "58291284d6cb477289d75ea8"
+       },
+       {
+         status: "correct",
+         id: "58291284d6cb477289d76ea8"
+       },
+       {
+         status: "correct",
+         id: "58291284d6cb477289d77ea8"
+       },
+       {
+         status: "correct",
+         id: "58291284d6cb477289d78ea8"
+       },
+       {
+         status: "correct",
+         id: "58291284d6cb477289d79ea8"
+       }
   ];
 
-console.log(testing2.username)
+// TODO: Check if answeredQs id matches
+
+// answeredQs.forEach(function(answered){
+//
+//   console.log(answered)
+//
+// });
+
+// var a = [1,2,3,4,5]
+//
+// console.log(_.includes(a, [1,2,3,5])); // returns true
+//
+//
+//
+var arrayys;
+
+arrayys.push(12)
+
+console.log(arrayys)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///

@@ -27,7 +27,7 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 var bodyParser = require('body-parser');
-
+var _ = require('lodash');
 
 //Database models.
 var User = require('./models/users-db.js');
@@ -195,12 +195,57 @@ if(questions[0] == 'd' && questions[1] == 'd' && questions[2] == 'a'){
 //Viewing Questions that users created.
 Router.get('/viewQs', function(req,res){
 
+
+///////////////////////////////////////////////////////////////
+// TODO: Find a way to filter questions that were already answered.
+
+var answeredQuestions = [];
+var username;
+
+try {
+
+var thisUser = req.user;
+
+} catch (e) {
+
+console.log('Error!!');
+
+} finally {
+
+//If the user is logged in.
+if(thisUser != undefined){
+
+myQuestions = thisUser.answeredQs
+username = thisUser.username;
+
+myQuestions.forEach(function(question){
+
+answeredQuestions.push(question.id);
+
+})
+
+//If the user is not logged in.
+}else{
+
+  answeredQuestions.push('none');
+  username = 'unavailable';
+}
+
+
+}
+///////////////////////////////////////////////////////////////////
+
   Question.find({}, function(err,body){
     if(err){
       console.log(err)
     }else{
 
-      res.render('quiz/viewQs/test', { questions : body });
+    res.render('quiz/viewQs/test', {
+      questions : body,
+      answeredQuestions : answeredQuestions,
+       _ : _,
+      username : username
+    });
 
     }
   });
@@ -209,7 +254,11 @@ Router.get('/viewQs', function(req,res){
 
 //Creating questions that users can score by.
 Router.get('/createQs', authenticationMiddleware(), function(req,res){
-  res.render('quiz/createQs/test');
+
+  var username = req.user.username;
+  res.render('quiz/createQs/test', {
+    username : username
+  });
 });
 
 //The place where you submit questions.
@@ -267,8 +316,8 @@ if(topics == undefined){
 
 }
 
-if(topics.length == '3'){
-  console.log('There are 3 topics')
+if(topics.length > '1'){
+  console.log('More than 1 topic!!!')
 }
 
 
