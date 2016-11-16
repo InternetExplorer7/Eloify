@@ -205,18 +205,37 @@ var answeredQs = [
 //
 //
 //
-var arrayys;
+// var arrayys;
+//
+// arrayys.push(12)
+//
+// console.log(arrayys)
 
-arrayys.push(12)
+var uniqueRandomArray = require('unique-random-array');
 
-console.log(arrayys)
+var testQs = [{a : 'hi'}, { a : 'bye'}, { a : 'haah'}, { a : 'fuckyou'}];
+
+var rand = uniqueRandomArray(testQs);
+
+// console.log(rand().a);
+
+var elo = require('elo-rank')(15);
 
 
 
+var playerA = 0;
+var playerB = 0;
 
 
+//Gets expected score for first parameter
+var expectedScoreA = elo.getExpected(playerA, playerB);
+var expectedScoreB = elo.getExpected(playerB, playerA);
 
 
+playerA = elo.updateRating(expectedScoreA, 1, playerA);
+
+console.log(playerA)
+console.log(playerB)
 
 
 

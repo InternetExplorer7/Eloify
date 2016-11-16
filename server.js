@@ -9,13 +9,16 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
+var uniqueRandomArray = require('unique-random-array');
 
 
 //All of the routes needed server side.
 var userRoutes = require('./server/user-routes');
 var gameRoutes = require('./server/game-routes');
-var User = require('./server/models/users-db.js');
 
+//The Databases
+var User = require('./server/models/users-db.js');
+var Questions = require('./server/models/questions-db.js');
 
 require('babel-register')({
   presets: [ 'react' ]
@@ -37,11 +40,33 @@ app.set('view engine', 'ejs');
 //The landing page.
 app.get('/', function(req,res){
 
+
+  Questions.find({}, function(err,body){
+
+//Error in finding questions.
+    if(err){
+      console.log(err)
+    var randomQuestion = 'ERROR';
+
+      res.render('home', { randomQuestion : randomQuestion });
+//All questions are found.
+    }else{
+      //Randomize the questions.
+    var rand = uniqueRandomArray(body)
+      //Random questions to check.
+  var randomQuestion = rand();
+
+  res.render('home', { randomQuestion : rand() });
+
+    }
+  });
+
   if(req.isAuthenticated()){
     console.log('AUTH BITCHES!!');
   }
   //console.log(req.user);
-  res.render('home');
+
+
 
 });
 

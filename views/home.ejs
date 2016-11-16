@@ -203,6 +203,7 @@
     </div>
 
     <div class="ui text container">
+
       <h1 class="ui inverted header">
       Eloify
       </h1>
@@ -214,27 +215,112 @@
   </div>
 
 <!-- MAIN FRONT PAGE -->
-
   <div class="ui vertical stripe segment">
     <div class="ui middle aligned stackable grid container">
+
+
+
       <div class="row">
         <div class="eight wide column">
 <br>
 
-          <h3 class="ui header">What is the ELO rating system? </h3>
-          <h3>1) Random Data</h3>
-          <h3>2) Random Data</h3>
-          <h3>3) Random Data</h3>
-          <h3>4) Random Data</h3>
+          <!-- <h3 class="ui header"><%= randomQuestion.question %> </h3>
+          <h3>a) <%= randomQuestion.choices.a %></h3>
+          <h3>b) <%= randomQuestion.choices.b %></h3>
+          <h3>c) <%= randomQuestion.choices.c %></h3>
+          <h3>d) <%= randomQuestion.choices.d %></h3> -->
 
-        </div>
+
+
+
+
+
+
+  </div>
 
       </div>
 
       <div class="row">
         <div class="center aligned column">
+          <h1 style="text-align : center; font-size : 70px; margin-top : -70px">Quick Question</h1>
           <br><br>
-          <a class="ui huge button red" href="/user/me">Start</a>
+
+
+
+          <div style="margin-bottom : 5px; text-align : center">
+             <form action="/user/thumbup/<%= randomQuestion._id %>/farhan" method="post" style="display : inline">
+
+
+                  <button class="ui button inverted green">
+             <i class="thumbs up icon black"></i>
+             <%= randomQuestion.likes.length - 1 %>
+                  </button>
+
+
+             </form>
+
+
+             <form action="/user/thumbdown/<%= randomQuestion._id %>/farhan" method="post" style="display : inline">
+
+
+                  <button class="ui button inverted red">
+             <i class="thumbs down icon black"></i>
+             <%= randomQuestion.dislikes.length - 1 %>
+                  </button>
+
+
+             </form>
+          </div>
+
+            <br>
+
+
+
+          <form action="/user/qs/<%= randomQuestion._id %>" method="post" class="ui form">
+
+
+
+          <h3>1) <%= randomQuestion.question %>  </h3>
+
+
+            <h4><%= randomQuestion.choices.a%>
+          <input type="checkbox" name="q1" value="a">
+            </h4>
+
+            <h4><%= randomQuestion.choices.b%>
+          <input type="checkbox" name="q1" value="b" >
+           </h4>
+
+           <h4><%= randomQuestion.choices.c%>
+          <input type="checkbox" name="q1" value="c" >
+          </h4>
+
+          <h4><%= randomQuestion.choices.d%>
+          <input type="checkbox" name="q1" value="d" >
+          </h4>
+
+
+          <p style="margin-top : 25px">Date Created : <%= randomQuestion.date %></p>
+          <p>Author : <a href="http://www.eloify.com/<%= randomQuestion.username%>"><%= randomQuestion.username %></a></p>
+
+
+
+          <input style="text-align : center" type="submit" value="Answer" class="ui huge button green">
+
+          <br><br><br>
+
+
+          <hr> <br>
+          </form>
+
+
+
+          <!-- <a class="ui huge button green" href="/user/me">Answer</a> -->
+
+
+
+
+
         </div>
       </div>
     </div>
