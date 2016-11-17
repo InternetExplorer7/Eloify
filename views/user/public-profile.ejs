@@ -2,10 +2,135 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Eloify</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
   </head>
   <body>
-    <h1>Username: <%= userName %> </h1>
-    <h1>Score: <%= userScore %> </h1>
+    <br><br>
+
+
+<div class="ui container">
+    <h1 style="text-align : center"> <%= userName %> </h1>
+
+<div style="text-align : center; margin-left : 45%">
+    <img class="ui image" src="http://shushi168.com/data/out/193/37281782-random-image.png" style="width : 20%; height : 20%;">
+</div>
+
+    <h1 style="text-align : center">ELO Score: <%= userScore %> </h1>
+
+
+<div style="text-align : center">
+
+<h3 style="display : inline">Followers: 122 </h3>
+
+<h3 style="display : inline; margin-left : 30px">Following : 113 </h3>
+
+</div>
+
+<br><br>
+
+  <div style="text-align : center">
+    <a class="ui button" style="width : 200px;">
+      Follow
+    </a>
+  </div>
+
+    <br><br>
+
+  <div style="text-align : center">
+
+    <a class="ui button showQs" style="width : 200px;" id="questionscreate">
+      Questions Created
+    </a>
+
+
+
+    <a class="ui button" style="width : 200px; margin-left : 35px;" id="questionsanswered">
+      Answered Questions
+    </a>
+</div>
+
+<!--  -->
+<p></p>
+<p style="display: none">This is the toggle</p>
+<!--  -->
+
+<div class="questionToggle"></div>
+<div class="questionToggle" style="display : none">
+  <h1 style="text-align : center">Questions Created</h1>
+
+
+
+  <br><br>
+</div>
+
+<div class="answerToggle"></div>
+<div class="answerToggle" style="display : none">
+  <h1 style="text-align : center">Answered Questions</h1>
+
+<div style="text-align : center">
+<h3 style="display : inline; margin-right : 35px; color : green;">Answered Correct : <%= answeredCorrect %></h3>
+
+<h3 style="display : inline; color : red;">Answered Wrong : <%= answeredWrong %></h3>
+</div>
+
+<br><br>
+
+<% answeredQuestions.forEach(function(question){ %>
+
+<hr>
+  <div style="margin-left : 30%">
+  <h2><%= question.question %></h2>
+
+  <div style="margin-left : 6%">
+  <h3>a) <%= question.choices.a %></h3>
+  <h3>b) <%= question.choices.b %></h3>
+  <h3>c) <%= question.choices.c %></h3>
+  <h3>d) <%= question.choices.d %></h3>
+  </div>
+
+  </div>
+
+  <br>
+  <p>Author: <a href="http://eloify.com/<%= question.username%>"><%= question.username%></a></p>
+<% }) %>
+
+  <br>
+  <br>
+
+
+</div>
+
+
+
+</div>
+
   </body>
+  <script type="text/javascript">
+
+
+  $('#questionscreate').click(function(){
+
+
+  $( "#questionscreate" ).toggleClass( 'red');
+
+
+    $( ".questionToggle" ).toggle();
+
+  })
+
+
+  $('#questionsanswered').click(function(){
+
+    $( "#questionsanswered" ).toggleClass( 'yellow');
+
+    $( ".answerToggle" ).toggle();
+
+  })
+
+  </script>
 </html>

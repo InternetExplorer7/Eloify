@@ -211,31 +211,221 @@ var answeredQs = [
 //
 // console.log(arrayys)
 
-var uniqueRandomArray = require('unique-random-array');
+// var uniqueRandomArray = require('unique-random-array');
+//
+// var testQs = [{a : 'hi'}, { a : 'bye'}, { a : 'haah'}, { a : 'fuckyou'}];
+//
+// var rand = uniqueRandomArray(testQs);
+//
+// // console.log(rand().a);
+//
+// var elo = require('elo-rank')(15);
+//
+//
+//
+// var playerA = 0;
+// var playerB = 0;
+//
+//
+// //Gets expected score for first parameter
+// var expectedScoreA = elo.getExpected(playerA, playerB);
+// var expectedScoreB = elo.getExpected(playerB, playerA);
+//
+//
+// playerA = elo.updateRating(expectedScoreA, 1, playerA);
+//
+// console.log(playerA)
+// console.log(playerB)
 
-var testQs = [{a : 'hi'}, { a : 'bye'}, { a : 'haah'}, { a : 'fuckyou'}];
-
-var rand = uniqueRandomArray(testQs);
-
-// console.log(rand().a);
-
-var elo = require('elo-rank')(15);
+var LazyArray = require('lazyarray');
 
 
+var myElements = [
+  { _id: '582b7eeebf1cd30004fe2fb3',
+   username: 'test222',
+   score: 33,
+   __v: 0,
+   answeredQs: [] },
 
-var playerA = 0;
-var playerB = 0;
+  { _id: '582b7eeebf1cd30004fe2fb3',
+  username: 'ralphholzmann',
+  score: 6969696969696969,
+  __v: 0,
+  answeredQs: [] },
+
+  { _id: '582b7eeebf1cd30004fe2fb3',
+   username: 'haahah',
+   score: 344444,
+   __v: 0,
+   answeredQs: [] },
+
+  { _id: '582b7eeebf1cd30004fe2fb3',
+    username: 'fuckery',
+    score: 32,
+    __v: 0,
+    answeredQs: [] },
+
+  { _id: '582b7eeebf1cd30004fe2fb3',
+    username: 'aabcs',
+    score: 22,
+    __v: 0,
+    answeredQs: [] }
+];
 
 
-//Gets expected score for first parameter
-var expectedScoreA = elo.getExpected(playerA, playerB);
-var expectedScoreB = elo.getExpected(playerB, playerA);
+var newArray = [
+     { _id: '582bad48bbcac500041642eb',
+       username: 'abc1234',
+       score: 0,
+       __v: 2,
+       answeredQs: [ [Object], [Object] ] },
+
+     { _id: '582271708419ac00049dc21f',
+       username: 'akeelyolo',
+       score: 1000000,
+       __v: 0,
+       answeredQs: [] },
+
+     { _id: '5828f4a1c0547572628f1e7b',
+       username: 'farhan',
+       score: 300,
+       __v: 10,
+       answeredQs:
+        [ [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object] ] },
+
+     { _id: '5829124ed6cb477289d73ea7',
+       username: 'abc',
+       score: 50,
+       __v: 1,
+       answeredQs: [ [Object] ] },
+     { _id: '5828f6cc1745157271a0da72',
+       username: 'hello',
+       score: '50',
+       __v: 9,
+       answeredQs:
+        [ [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object],
+          [Object] ] },
+     { _id: '582b7eeebf1cd30004fe2fb3',
+       username: 'ralphholzmann',
+       score: '6969696969696969',
+       __v: 0,
+       answeredQs: [] },
 
 
-playerA = elo.updateRating(expectedScoreA, 1, playerA);
+]
 
-console.log(playerA)
-console.log(playerB)
+
+
+
+
+var ab = [1,2];
+
+var newAb = [1,2,3];
+
+var arrayAdded = [];
+
+ab.forEach(function(a){
+
+  newAb.forEach(function(newB){
+
+    arrayAdded.push(newB)
+
+  })
+
+})
+
+
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://farhan:farhan@ds145677.mlab.com:45677/eloify_db');
+
+var Questions = require('./server/models/questions-db');
+
+
+// Questions.find({}, function(err,body){
+//   if(err){
+//     console.log(err)
+//   }else{
+//     //console.log(body)
+//     myAss = body;
+//   }
+// })
+
+
+
+
+var Database = {
+
+  myText : null,
+
+  getUser: function(callback) {
+
+      Questions.find({},function(err, data) {
+             if (err) {
+               this.myText = "Error";
+             }
+             else if (data.length == 0) {
+               this.myText = "No records";
+             }
+             else {
+               this.myText = data
+             }
+
+             //$('.log').html(myText);
+              callback(this.myText);
+      })
+  }
+
+}
+
+
+var testes;
+
+var newla = Database.getUser().then(function(){
+
+   testes = this.myText;
+   console.log(testes)
+ })
+
+
+
+// var testing = {
+//   a : 'hello',
+//   b : function(){
+//     this.a = 'Fuck?'
+//   },
+//   c : function(){
+//     console.log(this.a)
+//   }
+// }
+//
+// testing.b();
+// testing.c()
+
+
+
+
+
+
+
+
+
 
 
 

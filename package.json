@@ -17,6 +17,7 @@
     "express": "^4.14.0",
     "express-session": "^1.14.2",
     "iso": "^5.2.0",
+    "lazyarray": "^1.0.2",
     "lodash": "^4.16.6",
     "material-ui": "^0.16.1",
     "mongoose": "^4.6.6",

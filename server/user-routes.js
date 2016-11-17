@@ -405,6 +405,14 @@ Router.get('/public/:user', authenticationMiddleware(), function(req,res){
 
   });
 
+          // ----- Follow clicked on ------  //
+  Router.post('/follow', function(req,res){
+
+    res.send('This is where you follow people.');
+
+
+  });
+
 //Add ELO score to db.
 function addScore(){
 

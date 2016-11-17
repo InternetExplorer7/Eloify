@@ -10,6 +10,7 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 var uniqueRandomArray = require('unique-random-array');
+var LazyArray = require('lazyarray');
 
 
 //All of the routes needed server side.
@@ -37,9 +38,41 @@ app.set('view engine', 'ejs');
 
 // // // // // // // // // // // // // // // // // //
 
+
+// // // // // // // // // // // // // // // // // //
+      // --- Finding the Rank for all Users --- //
+
+var sortedRank = [];
+
+User.find({}, function(err,body){
+
+  if(err){
+    console.log(err)
+  }else{
+
+      var sortedArray = new LazyArray(body);
+
+      sortedArray.sort("score", "ascending");
+
+
+      Object.keys(sortedArray).forEach(function(key) {
+
+          sortedRank.push(sortedArray[key]);
+
+      });
+
+
+    }
+
+});
+// // // // // // // // // // // // // // // // // //
+
+
+
+
+
 //The landing page.
 app.get('/', function(req,res){
-
 
   Questions.find({}, function(err,body){
 
@@ -85,8 +118,11 @@ User.find({ username : userSearched}, function(err,body){
 
       //See if there is a username with a try statement.
       try {
-        var userName = body[0].username;
-        var userScore = body[0].score;
+      var userName = body[0].username;
+      var userScore = body[0].score;
+      var answeredIds = body[0].answeredQs;
+
+
       } catch (e) {
         //userName = 'Invalid Bullshit';
       //  res.render('user/cannotfind');
@@ -95,14 +131,65 @@ User.find({ username : userSearched}, function(err,body){
       }
 
 if(userName == undefined){
-  res.render('user/cannotfind');
+
+ res.render('user/cannotfind');
+
 }else {
 
-  //If no error, we render your public profile.
-      res.render('user/public-profile',{
-          userName : userName,
-          userScore : userScore
-        });
+
+  var questions = {
+    questionsID : [],
+    correct : 0,
+    wrong : 0
+  };
+
+  var questionsSaved = [];
+
+
+answeredIds.forEach(function(qs){
+
+
+if(qs.status == 'correct'){
+  questions.correct += 1
+}
+
+if(qs.status == 'wrong'){
+  questions.wrong += 1
+}
+
+var questionId = qs.id;
+
+questions.questionsID.push(questionId);
+
+
+})
+
+
+    //Find the matching questions.
+Questions.find({ _id: { $in: questions.questionsID }}, function (err, markets) {
+
+
+if(err){
+  console.log(err)
+}else{
+  //Do nothing here.
+}
+
+
+//If no error, we render your public profile.
+    res.render('user/public-profile',{
+        userName : userName,
+        userScore : userScore,
+        answeredQuestions : markets,
+        answeredCorrect : questions.correct,
+        answeredWrong : questions.wrong
+      });
+
+
+})
+
+
+
     }
 
   }
