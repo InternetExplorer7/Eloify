@@ -231,6 +231,7 @@ var RouterContext = React.createFactory(ReactRouter.RouterContext);
 
 //The way to deploy javascript on to express applications.
 app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Listen on PORT 3000
