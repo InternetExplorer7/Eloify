@@ -11,42 +11,7 @@
     <title>Eloify</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title">
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId: '993025947496514',
-                xfbml: true,
-                version: 'v2.8'
-            });
-            FB.AppEvents.logPageView();
-        };
 
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-            console.log('Logged in.');
-          }
-          else {
-            FB.login();
-          }
-        });
-
-        function myFacebookLogin() {
-          FB.login(function(){}, {scope: 'publish_actions'});
-        }
-
-
-    </script>
     <style type="text/css">
         .hidden.menu {
             display: none;
@@ -143,12 +108,44 @@
             }
         }
     </style>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
     <script>
         var scrolled = 0;
         $(document).ready(function() {
+
+          window.fbAsyncInit = function() {
+              FB.init({
+                  appId: '993025947496514',
+                  xfbml: true,
+                  version: 'v2.8'
+              });
+              FB.AppEvents.logPageView();
+          };
+
+          (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) {
+                  return;
+              }
+              js = d.createElement(s);
+              js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js";
+              fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+          FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+              console.log('Logged in.');
+            }
+            else { FB.login(); }
+          });
+
+          function myFacebookLogin() {
+            FB.login(function(){}, {scope: 'publish_actions'});
+          }
+
+
 
             // fix menu when passed
             $('.masthead')
@@ -294,25 +291,11 @@
                                     <%= randomQuestion.username %>
                                 </a>
                             </p>
-
-
-
                             <input style="text-align : center" type="submit" value="Answer" class="ui huge button green">
-
                             <br><br><br>
-
-
                             <hr> <br>
                         </form>
-
-
-
                         <!-- <a class="ui huge button green" href="/user/me">Answer</a> -->
-
-
-
-
-
                     </div>
                 </div>
             </div>
