@@ -1,332 +1,324 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <!-- Standard Meta -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <!-- Site Properties -->
-  <title>Eloify</title>
+    <!-- Site Properties -->
+    <title>Eloify</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" media="screen" title="no title">
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '993025947496514',
+                xfbml: true,
+                version: 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+        };
 
-  <style type="text/css">
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
-    .hidden.menu {
-      display: none;
-    }
-
-    .masthead.segment {
-      min-height: 700px;
-      padding: 1em 0em;
-    }
-    .masthead .logo.item img {
-      margin-right: 1em;
-    }
-    .masthead .ui.menu .ui.button {
-      margin-left: 0.5em;
-    }
-    .masthead h1.ui.header {
-      margin-top: 3em;
-      margin-bottom: 0em;
-      font-size: 4em;
-      font-weight: normal;
-    }
-    .masthead h2 {
-      font-size: 1.7em;
-      font-weight: normal;
-    }
-
-    .ui.vertical.stripe {
-      padding: 8em 0em;
-    }
-    .ui.vertical.stripe h3 {
-      font-size: 2em;
-    }
-    .ui.vertical.stripe .button + h3,
-    .ui.vertical.stripe p + h3 {
-      margin-top: 3em;
-    }
-    .ui.vertical.stripe .floated.image {
-      clear: both;
-    }
-    .ui.vertical.stripe p {
-      font-size: 1.33em;
-    }
-    .ui.vertical.stripe .horizontal.divider {
-      margin: 3em 0em;
-    }
-
-    .quote.stripe.segment {
-      padding: 0em;
-    }
-    .quote.stripe.segment .grid .column {
-      padding-top: 5em;
-      padding-bottom: 5em;
-    }
-
-    .footer.segment {
-      padding: 5em 0em;
-    }
-
-    .secondary.pointing.menu .toc.item {
-      display: none;
-    }
-
-    @media only screen and (max-width: 700px) {
-      .ui.fixed.menu {
-        display: none !important;
-      }
-      .secondary.pointing.menu .item,
-      .secondary.pointing.menu .menu {
-        display: none;
-      }
-      .secondary.pointing.menu .toc.item {
-        display: block;
-      }
-      .masthead.segment {
-        min-height: 350px;
-      }
-      .masthead h1.ui.header {
-        font-size: 2em;
-        margin-top: 1.5em;
-      }
-      .masthead h2 {
-        margin-top: 0.5em;
-        font-size: 1.5em;
-      }
-    }
-
-
-  </style>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
-
-  <script>
-  var scrolled = 0;
-  $(document).ready(function() {
-
-      // fix menu when passed
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function() {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function() {
-            $('.fixed.menu').transition('fade out');
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            console.log('Logged in.');
+          }
+          else {
+            FB.login();
           }
         });
 
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item');
+        function myFacebookLogin() {
+          FB.login(function(){}, {scope: 'publish_actions'});
+        }
 
 
-        // //Scrolling some button.
-            $("#downClick").on("click" ,function(){
+    </script>
+    <style type="text/css">
+        .hidden.menu {
+            display: none;
+        }
 
-           scrolled = scrolled - 300;
+        .masthead.segment {
+            min-height: 700px;
+            padding: 1em 0em;
+        }
 
-              $(".ui large top fixed hidden menu").stop().animate({
-                scrollBottom :  -222
-           });
+        .masthead .logo.item img {
+            margin-right: 1em;
+        }
+
+        .masthead .ui.menu .ui.button {
+            margin-left: 0.5em;
+        }
+
+        .masthead h1.ui.header {
+            margin-top: 3em;
+            margin-bottom: 0em;
+            font-size: 4em;
+            font-weight: normal;
+        }
+
+        .masthead h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .ui.vertical.stripe {
+            padding: 8em 0em;
+        }
+
+        .ui.vertical.stripe h3 {
+            font-size: 2em;
+        }
+
+        .ui.vertical.stripe .button+h3,
+        .ui.vertical.stripe p+h3 {
+            margin-top: 3em;
+        }
+
+        .ui.vertical.stripe .floated.image {
+            clear: both;
+        }
+
+        .ui.vertical.stripe p {
+            font-size: 1.33em;
+        }
+
+        .ui.vertical.stripe .horizontal.divider {
+            margin: 3em 0em;
+        }
+
+        .quote.stripe.segment {
+            padding: 0em;
+        }
+
+        .quote.stripe.segment .grid .column {
+            padding-top: 5em;
+            padding-bottom: 5em;
+        }
+
+        .footer.segment {
+            padding: 5em 0em;
+        }
+
+        .secondary.pointing.menu .toc.item {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .ui.fixed.menu {
+                display: none !important;
+            }
+            .secondary.pointing.menu .item,
+            .secondary.pointing.menu .menu {
+                display: none;
+            }
+            .secondary.pointing.menu .toc.item {
+                display: block;
+            }
+            .masthead.segment {
+                min-height: 350px;
+            }
+            .masthead h1.ui.header {
+                font-size: 2em;
+                margin-top: 1.5em;
+            }
+            .masthead h2 {
+                margin-top: 0.5em;
+                font-size: 1.5em;
+            }
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script>
+        var scrolled = 0;
+        $(document).ready(function() {
+
+            // fix menu when passed
+            $('.masthead')
+                .visibility({
+                    once: false,
+                    onBottomPassed: function() {
+                        $('.fixed.menu').transition('fade in');
+                    },
+                    onBottomPassedReverse: function() {
+                        $('.fixed.menu').transition('fade out');
+                    }
+                });
+
+            // create sidebar and attach to menu open
+            $('.ui.sidebar')
+                .sidebar('attach events', '.toc.item');
 
 
+            // //Scrolling some button.
+            $("#downClick").on("click", function() {
 
-         });
+                scrolled = scrolled - 300;
 
-
-
-
-    });
-
-
-
-  </script>
+                $(".ui large top fixed hidden menu").stop().animate({
+                    scrollBottom: -222
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
-<!-- Following Menu -->
-<div class="ui large top fixed hidden menu">
-  <div class="ui container">
-    <a class="active item">Home</a>
-    <a class="item" id="downClick">About</a>
-
-
-    <div class="right menu">
-
-      <div class="item">
-        <a class="ui button" href="/user/login">Log in</a>
-      </div>
-
-      <div class="item">
-        <a class="ui primary button" href="/user/register">Sign Up</a>
-      </div>
-
-
-    </div>
-  </div>
-</div>
-
-<!-- Sidebar Menu -->
-<div class="ui vertical inverted sidebar menu">
-  <a class="active item">Home</a>
-  <a class="item">About</a>
-  <a class="item">Login</a>
-  <a class="item">LALAL</a>
-
-  <a class="item">Signup</a>
-</div>
-
-
-<!-- Page Contents -->
-<div class="pusher">
-  <div class="ui inverted vertical masthead center aligned segment">
-
-
-<!-- MAIN FRONT PAGE -->
-    <div class="ui container">
-      <div class="ui large secondary inverted pointing menu">
-        <a class="toc item">
-          <i class="sidebar icon"></i>
-        </a>
-        <a href="/" class="active item white">Eloify</a>
-
-        <div class="right item">
-          <a class="ui inverted button" href="/user/login">Log in</a>
-          <a class="ui button inverted" href="/user/register">Sign Up</a>
+    <!-- Following Menu -->
+    <div class="ui large top fixed hidden menu">
+        <div class="ui container">
+            <a class="active item">Home</a>
+            <a class="item" id="downClick">About</a>
+            <div class="right menu">
+                <div class="item">
+                    <a class="ui button" href="/user/login">Log in</a>
+                    <button onclick="myFacebookLogin()">Login with Facebook</button>
+                </div>
+                <div class="item">
+                    <a class="ui primary button" href="/user/register">Sign Up</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="ui text container">
+    <!-- Sidebar Menu -->
+    <div class="ui vertical inverted sidebar menu">
+        <a class="active item">Home</a>
+        <a class="item">About</a>
+        <a class="item">Login</a>
+        <a class="item">Signup</a>
+    </div>
 
-      <h1 class="ui inverted header">
+    <!-- Page Contents -->
+    <div class="pusher">
+        <div class="ui inverted vertical masthead center aligned segment">
+
+            <!-- MAIN FRONT PAGE -->
+            <div class="ui container">
+                <div class="ui large secondary inverted pointing menu">
+                    <a class="toc item">
+                        <i class="sidebar icon"></i>
+                    </a>
+                    <a href="/" class="active item white">Eloify</a>
+                    <div class="right item">
+                        <a class="ui inverted button" href="/user/login">Log in</a>
+                        <button onclick="myFacebookLogin()">Login with Facebook</button>
+                        <a class="ui button inverted" href="/user/register">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui text container">
+
+                <h1 class="ui inverted header">
       Eloify
       </h1>
-      <h2>Test your knowledge with the ELO Rating System.</h2>
-      <br>
-      <a class="ui huge red button" href="/user/me"> Start</a>
-    </div>
+                <h2>Test your knowledge with the ELO Rating System.</h2>
+                <br>
+                <a class="ui huge red button" href="/user/me"> Start</a>
+            </div>
 
-  </div>
+        </div>
 
-<!-- MAIN FRONT PAGE -->
-  <div class="ui vertical stripe segment">
-    <div class="ui middle aligned stackable grid container">
-
-
-
-      <div class="row">
-        <div class="eight wide column">
-<br>
-
-          <!-- <h3 class="ui header"><%= randomQuestion.question %> </h3>
+        <!-- MAIN FRONT PAGE -->
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="eight wide column">
+                        <br>
+                        <!-- <h3 class="ui header"><%= randomQuestion.question %> </h3>
           <h3>a) <%= randomQuestion.choices.a %></h3>
           <h3>b) <%= randomQuestion.choices.b %></h3>
           <h3>c) <%= randomQuestion.choices.c %></h3>
           <h3>d) <%= randomQuestion.choices.d %></h3> -->
-
-
-
-
-
-
-
-  </div>
-
-      </div>
-
-      <div class="row">
-        <div class="center aligned column">
-          <h1 style="text-align : center; font-size : 70px; margin-top : -70px">Quick Question</h1>
-          <br><br>
-
-
-
-          <div style="margin-bottom : 5px; text-align : center">
-             <form action="/user/thumbup/<%= randomQuestion._id %>/farhan" method="post" style="display : inline">
-
-
-                  <button class="ui button inverted green">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center aligned column">
+                        <h1 style="text-align : center; font-size : 70px; margin-top : -70px">Quick Question</h1>
+                        <br><br>
+                        <div style="margin-bottom : 5px; text-align : center">
+                            <form action="/user/thumbup/<%= randomQuestion._id %>/farhan" method="post" style="display : inline">
+                                <button class="ui button inverted green">
              <i class="thumbs up icon black"></i>
              <%= randomQuestion.likes.length - 1 %>
                   </button>
-
-
-             </form>
-
-
-             <form action="/user/thumbdown/<%= randomQuestion._id %>/farhan" method="post" style="display : inline">
-
-
-                  <button class="ui button inverted red">
+                            </form>
+                            <form action="/user/thumbdown/<%= randomQuestion._id %>/farhan" method="post" style="display : inline">
+                                <button class="ui button inverted red">
              <i class="thumbs down icon black"></i>
              <%= randomQuestion.dislikes.length - 1 %>
                   </button>
-
-
-             </form>
-          </div>
-
-            <br>
-
-
-
-          <form action="/user/qs/<%= randomQuestion._id %>" method="post" class="ui form">
-
-
-
-          <h3>1) <%= randomQuestion.question %>  </h3>
-
-
-            <h4><%= randomQuestion.choices.a%>
+                            </form>
+                        </div>
+                        <br>
+                        <form action="/user/qs/<%= randomQuestion._id %>" method="post" class="ui form">
+                            <h3>1) <%= randomQuestion.question %>  </h3>
+                            <h4><%= randomQuestion.choices.a%>
           <input type="checkbox" name="q1" value="a">
             </h4>
-
-            <h4><%= randomQuestion.choices.b%>
+                            <h4><%= randomQuestion.choices.b%>
           <input type="checkbox" name="q1" value="b" >
            </h4>
-
-           <h4><%= randomQuestion.choices.c%>
+                            <h4><%= randomQuestion.choices.c%>
           <input type="checkbox" name="q1" value="c" >
           </h4>
 
-          <h4><%= randomQuestion.choices.d%>
+                            <h4><%= randomQuestion.choices.d%>
           <input type="checkbox" name="q1" value="d" >
           </h4>
 
 
-          <p style="margin-top : 25px">Date Created : <%= randomQuestion.date %></p>
-          <p>Author : <a href="http://www.eloify.com/<%= randomQuestion.username%>"><%= randomQuestion.username %></a></p>
+                            <p style="margin-top : 25px">Date Created :
+                                <%= randomQuestion.date %>
+                            </p>
+                            <p>Author :
+                                <a href="http://www.eloify.com/<%= randomQuestion.username%>">
+                                    <%= randomQuestion.username %>
+                                </a>
+                            </p>
 
 
 
-          <input style="text-align : center" type="submit" value="Answer" class="ui huge button green">
+                            <input style="text-align : center" type="submit" value="Answer" class="ui huge button green">
 
-          <br><br><br>
-
-
-          <hr> <br>
-          </form>
+                            <br><br><br>
 
 
-
-          <!-- <a class="ui huge button green" href="/user/me">Answer</a> -->
+                            <hr> <br>
+                        </form>
 
 
 
+                        <!-- <a class="ui huge button green" href="/user/me">Answer</a> -->
 
 
+
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-<br><br><br>
-  <!-- <div class="ui vertical stripe quote segment">
+        <br><br><br>
+        <!-- <div class="ui vertical stripe quote segment">
     <div class="ui equal width stackable internally celled grid">
       <div class="center aligned row">
         <div class="column">
@@ -343,7 +335,7 @@
     </div>
   </div> -->
 
-  <!-- <div class="ui vertical stripe segment">
+        <!-- <div class="ui vertical stripe segment">
     <div class="ui text container">
       <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
       <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p>
@@ -358,38 +350,38 @@
   </div> -->
 
 
-  <div class="ui inverted vertical footer segment">
-    <div class="ui container">
-      <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">About</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Careers</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Random List</a>
-            <a href="#" class="item">Satanic Worshipping</a>
-          </div>
+        <div class="ui inverted vertical footer segment">
+            <div class="ui container">
+                <div class="ui stackable inverted divided equal height stackable grid">
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">About</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">Careers</a>
+                            <a href="#" class="item">Contact Us</a>
+                            <a href="#" class="item">Random List</a>
+                            <a href="#" class="item">Satanic Worshipping</a>
+                        </div>
+                    </div>
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">Services</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">SAAS(Software as a service)</a>
+                            <a href="#" class="item">BAAS(Backend as a service)</a>
+                            <a href="#" class="item">ASS(?)</a>
+                            <a href="#" class="item">Edit this whenever</a>
+                        </div>
+                    </div>
+                    <div class="seven wide column">
+                        <h4 class="ui inverted header">Quick Link or Info</h4>
+                        <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">SAAS(Software as a service)</a>
-            <a href="#" class="item">BAAS(Backend as a service)</a>
-            <a href="#" class="item">ASS(?)</a>
-            <a href="#" class="item">Edit this whenever</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Quick Link or Info</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
 
 
-  <!-- <div class="ui inverted footer vertical segment center">
+    <!-- <div class="ui inverted footer vertical segment center">
     <div class="ui stackable center aligned page grid">
       <div class="four column row">
 
@@ -418,7 +410,7 @@
             </div>
           </div> -->
 
-      <!-- <div class="column">
+    <!-- <div class="column">
         <h5 class="ui inverted header">Designed By</h5>
         <addr>
           <a class="item" href="http://scripteden.com"><img src="images/scripteden-logo-g.png" alt="Logo" style="height:20px" /></a>  <br/>
@@ -432,8 +424,8 @@
 
 
 
-  </div>
-  </div>
+    </div>
+    </div>
 
 
 </body>

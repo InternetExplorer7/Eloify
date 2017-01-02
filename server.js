@@ -12,7 +12,6 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var uniqueRandomArray = require('unique-random-array');
 var LazyArray = require('lazyarray');
 
-
 //All of the routes needed server side.
 var userRoutes = require('./server/user-routes');
 var gameRoutes = require('./server/game-routes');
@@ -25,7 +24,6 @@ require('babel-register')({
   presets: [ 'react' ]
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //All the routes needed for user auth.
@@ -33,11 +31,7 @@ app.use('/user', userRoutes);
 
 //All the routes needed for the game.
 app.use('/game', gameRoutes);
-
 app.set('view engine', 'ejs');
-
-// // // // // // // // // // // // // // // // // //
-
 
 // // // // // // // // // // // // // // // // // //
       // --- Finding the Rank for all Users --- //
@@ -67,10 +61,6 @@ User.find({}, function(err,body){
 });
 // // // // // // // // // // // // // // // // // //
 
-
-
-
-
 //The landing page.
 app.get('/', function(req,res){
 
@@ -95,7 +85,8 @@ app.get('/', function(req,res){
   });
 
   if(req.isAuthenticated()){
-    console.log('AUTH BITCHES!!');
+
+
   }
   //console.log(req.user);
 

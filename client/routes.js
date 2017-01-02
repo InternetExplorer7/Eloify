@@ -14,9 +14,6 @@ var CustomMap2 = require('../components/Map2.jsx');
 
 var IsoTest = require('../components/Test.jsx');
 
-
-
-
 var AnotherPage = React.createClass({
 
   render: function() {
